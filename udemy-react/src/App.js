@@ -1,23 +1,30 @@
 import React from 'react';
 
-//class App extends Component {
-//  render() {
-//    return (
-//      <React.Fragment>
-//        <label htmlFor="bar">
-//          bar
-//        </label>
-//        <input type='text' onChange={() => {console.log("I'm clicked!")}} />
-//      </React.Fragment>
-//    )
-//  }
-//}
-
 const App = () => {
+  const profiles = [
+    {
+      name: "Taro",
+      age: 10
+    },
+    {
+      name: "hanako",
+      age:9
+    },
+    {
+      name: "okodo"
+    }
+  ]
+
   return (
     <div>
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index}/>
+        })
+      }
       <Cat />
-      <Cat />
+      <User name={'Taro'} age={10}/>
+      <User name={'Hanako'} age={9}/>
     </div>
   )
 }
@@ -25,12 +32,13 @@ const App = () => {
 const Cat = () => {
   return <div>Meow!!</div>
 }
-//function App() {
-//  return React.createElement(
-//    "div",
-//    null,
-//    "Hello, world!"
-//  )
-//}
+
+const User = (props) => {
+  return <div>Meow! {props.name}, your age is {props.age}</div>
+}
+
+User.defaultProps = {
+  age:1
+}
 
 export default App;
